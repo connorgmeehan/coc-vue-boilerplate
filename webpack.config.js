@@ -34,7 +34,7 @@ module.exports = (env = {}) => ({
     }
   },
   entry: {
-    app: `./app.ts`
+    app: `./main.ts`
   },
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -126,7 +126,7 @@ module.exports = (env = {}) => ({
     }),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: `./public/index.html`
+      template: path.join(__dirname, 'public', 'index.html'),
     }),
     new MiniCssExtractPlugin({
       filename: '[name].css'
