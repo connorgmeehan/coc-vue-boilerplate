@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "",
   "private": true,
+  "engines": {
+    "node": ">=14"
+  },
   "scripts": {
     "serve": "webpack serve",
     "build:dev": "webpack",

@@ -1,6 +1,7 @@
 # coc-vue-boilerplate
 
 Vue/Typescript/Javascript boilerplate for vue projects.
+This was setup using yarn but you can use NPM if you want by deleting the `yarn.lock` and running `npm i`.
 
 ## Features 
 
