@@ -8,7 +8,6 @@
     "build:dev": "webpack",
     "build": "webpack --env env=production && npm run build:clean-sourcemaps",
     "build:clean-sourcemaps": "rm ./dist/*.js.map",
-    "dev": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Connor Meehan",

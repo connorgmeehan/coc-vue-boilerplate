@@ -67,12 +67,7 @@ module.exports = (env = {}) => ({
           'vue-style-loader',
           'css-loader',
           'resolve-url-loader',
-          {
-            loader: 'sass-loader',
-            options: {
-              additionalData: '@import "~/core/coreui/styles/main.scss";'
-            }
-          },
+          'sass-loader',
         ]
       },
       {
