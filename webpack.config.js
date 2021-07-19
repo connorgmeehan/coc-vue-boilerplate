@@ -12,6 +12,7 @@ const Dotenv = require('dotenv-webpack');
 const { VueLoaderPlugin } = require('vue-loader');
 const BannerPlugin = webpack.BannerPlugin;
 const CopyPlugin = require('copy-webpack-plugin');
+const { ESBuildMinifyPlugin } = require('esbuild-loader')
 
 const getBanner = () => {
   const stdout = require('child_process').execSync('git rev-parse HEAD');
@@ -136,6 +137,9 @@ module.exports = (env = {}) => ({
         { from: path.join(__dirname, 'public') },
       ],
     }),
+    new ESBuildMinifyPlugin({
+      target: 'es2015',
+    }),
   ],
   optimization: {
     runtimeChunk: 'single',
@@ -154,7 +158,7 @@ module.exports = (env = {}) => ({
     host: '0.0.0.0',
     contentBase: path.join(__dirname, 'public'),
     publicPath: process.env.BASE_URL,
-    port: 8000,
+    port: 8080,
     index: './index.html',
     hot: true,
     stats: 'minimal',
@@ -186,21 +190,21 @@ module.exports = (env = {}) => ({
       }
 
       const otherAddresses = addresses.filter(address => address.substring(0, 3) !== '192');
-      console.log('Not serving on other local ips: ');
+      console.log('Also serving on:');
       otherAddresses.forEach((ip) => console.log(ip));
       addresses = addresses.filter(address => {
         const addressStart = address.substring(0, 3);
         return addressStart === '192' // Local network
-          || addressStart === '169' // Phone hotspot
+          // || addressStart === '169' // Phone hotspot
       });
 
       // print qr code to terminal
       addresses.forEach(address => {
-        console.log(`serving on local network: https://${address}:8000`);
-        qrCodeTerminal.generate(`https://${address}:8000`, { small: true }, function (qrcode) {
+        console.log()
+        console.log(`Serving on local network: https://${address}:8080`);
+        qrCodeTerminal.generate(`https://${address}:8080`, { small: true }, function (qrcode) {
           console.log(qrcode);
         });
-        console.log()
         console.log();
       })
     }
