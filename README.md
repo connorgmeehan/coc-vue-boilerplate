@@ -14,3 +14,4 @@ Vue/Typescript/Javascript boilerplate for vue projects.
 `yarn serve` - Dev server
 `yarn build` - Production build
 `yarn build:dev` - Building with sourcemaps
+`yarn generate-https` - Generate keys for https on local serve
