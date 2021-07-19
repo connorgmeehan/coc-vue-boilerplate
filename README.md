@@ -9,8 +9,8 @@ Vue/Typescript/Javascript boilerplate for vue projects.
 - ES Lint (Vue/TS/JS)
 - ES Build super fast loading for Javascript/Typescript
 - SASS/SCSS for styles
+- Serves using HTTPS over local network, prints QR code to terminal
 - Script to generate https certificates using [mkcert](https://github.com/FiloSottile/mkcert)
-- Serves over local network, prints QR code to terminal
 
 ## Commands
 
