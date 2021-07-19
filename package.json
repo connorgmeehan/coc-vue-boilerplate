@@ -1,0 +1,57 @@
+{
+  "name": "@webar/custom",
+  "version": "0.0.1",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "serve": "webpack serve",
+    "build:dev": "webpack",
+    "build": "webpack --env env=production && npm run build:clean-sourcemaps",
+    "build:clean-sourcemaps": "rm ./dist/*.js.map",
+    "dev": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Connor Meehan",
+  "license": "ISC",
+  "dependencies": {
+    "vue": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.13",
+    "@typescript-eslint/eslint-plugin": "^4.4.0",
+    "@typescript-eslint/parser": "^4.4.0",
+    "@vue/cli-plugin-eslint": "^4.5.11",
+    "@vue/compiler-sfc": "^3.0.0-beta.18",
+    "@vue/eslint-config-typescript": "7.0.0",
+    "@vusion/webfonts-generator": "^0.7.3",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "6",
+    "css-loader": "^3.6.0",
+    "dotenv": "^8.2.0",
+    "dotenv-webpack": "^6.0.4",
+    "esbuild-loader": "^2.13.0",
+    "eslint": "^7.0.0",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-vue": "^7.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "node-sass": "^4.14.1",
+    "qrcode-terminal": "^0.12.0",
+    "resolve-url-loader": "^3.1.2",
+    "sass-loader": "^10.0.3",
+    "style-loader": "^1.2.1",
+    "vue-eslint-parser": "^7.6.0",
+    "vue-loader": "^16.0.0-beta.4",
+    "vue-style-loader": "^4.1.2",
+    "webfont": "^11.1.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^4.6.0",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-glsl-loader": "^1.0.1",
+    "webpackbar": "^4.0.0"
+  },
+  "peerDependencies": {
+    "webpack": "^4.1.0 || ^5.0.0-0"
+  }
+}
