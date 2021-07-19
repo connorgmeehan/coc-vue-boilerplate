@@ -1,0 +1,1 @@
+# coc-vue-boilerplate
