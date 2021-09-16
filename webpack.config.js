@@ -4,7 +4,6 @@ const webpack = require('webpack');
 const fs = require('fs');
 
 // Plugins
-const WebpackBar = require('webpackbar');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -27,6 +26,12 @@ version: ${stdout.toString()}
 }
 
 
+/**
+ * [TODO:description]
+ *
+ * @param {} [env] - [TODO:description]
+ * @return {import('webpack').Configuration} [TODO:description]
+ */
 module.exports = (env = {}) => ({
   context: path.resolve(__dirname, 'src'),
   mode: env.production ? 'production' : 'development',
@@ -128,7 +133,6 @@ module.exports = (env = {}) => ({
     new MiniCssExtractPlugin({
       filename: '[name].css'
     }),
-    new WebpackBar(),
     new VueLoaderPlugin(),
     new BannerPlugin({
       banner: getBanner(),
@@ -158,24 +162,15 @@ module.exports = (env = {}) => ({
   devtool: 'source-map',
   devServer: {
     host: '0.0.0.0',
-    contentBase: path.join(__dirname, 'public'),
-    publicPath: process.env.BASE_URL,
-    port: 8080,
-    index: './index.html',
     hot: true,
-    stats: 'minimal',
-    quiet: true,
 
     https: {
       key: fs.readFileSync(path.resolve(__dirname, './keys/server.pem')),
       cert: fs.readFileSync(path.resolve(__dirname, './keys/server.crt')),
     },
-    overlay: {
-      warnings: true,
-      errors: true
-    },
     historyApiFallback: true,
-    after: () => {
+    onListening: (devServer) => {
+      const port = devServer.server.address().port;
       const qrCodeTerminal = require('qrcode-terminal');
       const os = require('os');
       const { networkInterfaces } = os;
@@ -203,8 +198,8 @@ module.exports = (env = {}) => ({
       // print qr code to terminal
       addresses.forEach(address => {
         console.log()
-        console.log(`Serving on local network: https://${address}:8080`);
-        qrCodeTerminal.generate(`https://${address}:8080`, { small: true }, function (qrcode) {
+        console.log(`Serving on local network: https://${address}:${port}`);
+        qrCodeTerminal.generate(`https://${address}:${port}`, { small: true }, function (qrcode) {
           console.log(qrcode);
         });
         console.log();
