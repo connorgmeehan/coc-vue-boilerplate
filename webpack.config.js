@@ -13,6 +13,7 @@ const { VueLoaderPlugin } = require('vue-loader');
 const BannerPlugin = webpack.BannerPlugin;
 const CopyPlugin = require('copy-webpack-plugin');
 const { ESBuildMinifyPlugin } = require('esbuild-loader')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const getBanner = () => {
   const stdout = require('child_process').execSync('git rev-parse HEAD');
@@ -140,7 +141,8 @@ module.exports = (env = {}) => ({
     new ESBuildMinifyPlugin({
       target: 'es2015',
     }),
-  ],
+    // Only add bundle analyzer if plugin is true
+  ].concat(env.bundle === 1 ? [new BundleAnalyzerPlugin()] : []),
   optimization: {
     runtimeChunk: 'single',
     splitChunks: {
