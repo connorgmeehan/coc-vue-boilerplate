@@ -82,7 +82,6 @@ module.exports = (env = {}) => ({
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
-            options: { hmr: !env.production }
           },
           'css-loader'
         ]
@@ -137,9 +136,17 @@ module.exports = (env = {}) => ({
     new BannerPlugin({
       banner: getBanner(),
     }),
+    new webpack.DefinePlugin({
+      __VUE_OPTIONS_API__: false,
+    }),
     new CopyPlugin({
       patterns: [
-        { from: path.join(__dirname, 'public') },
+        {
+          from: path.join(__dirname, 'public'),
+          globOptions: {
+            ignore: ['**/index.html']
+          }
+        },
       ],
     }),
     new ESBuildMinifyPlugin({
